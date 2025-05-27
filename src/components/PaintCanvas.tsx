@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -153,16 +152,21 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
     // Draw contour on top
     exportCtx.drawImage(canvas, 0, 0);
     
-    const base64Data = exportCanvas.toDataURL("image/png");
-    
-    // Create download link
-    const link = document.createElement("a");
-    link.download = "my-masterpiece.png";
-    link.href = base64Data;
-    link.click();
-    
-    console.log("Base64 exported:", base64Data);
-    toast.success("Your masterpiece has been saved! 🌟");
+    // Convert to blob and download
+    exportCanvas.toBlob((blob) => {
+      if (!blob) return;
+      
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.download = "my-masterpiece.png";
+      link.href = url;
+      link.click();
+      
+      // Clean up the URL object
+      URL.revokeObjectURL(url);
+      
+      toast.success("Your masterpiece has been downloaded! 🌟");
+    }, "image/png");
   };
 
   return (

@@ -30,6 +30,12 @@ export const ImageGallery = ({ onImageSelect }: ImageGalleryProps) => {
       url: "https://images.unsplash.com/photo-1441057206919-63d19fac2369?w=400&h=300&fit=crop",
       title: "Penguins",
       description: "Two penguins on a rock"
+    },
+    {
+      id: 5,
+      url: "/lovable-uploads/3953c8d0-b798-4048-b29c-c44bed5b614d.png",
+      title: "Pikachu",
+      description: "Cute Pikachu to color"
     }
   ];
 
