@@ -15,21 +15,21 @@ export const ImageGallery = ({ onImageSelect }: ImageGalleryProps) => {
     },
     {
       id: 2,
-      url: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=400&h=300&fit=crop",
-      title: "Orange Flowers",
-      description: "Bright orange flowers"
-    },
-    {
-      id: 3,
-      url: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=400&h=300&fit=crop",
-      title: "Pine Forest",
-      description: "Tall pine trees"
-    },
-    {
-      id: 4,
       url: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&h=300&fit=crop",
       title: "Cute Cat",
       description: "Orange and white tabby cat"
+    },
+    {
+      id: 3,
+      url: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=400&h=300&fit=crop",
+      title: "Grey Kitten",
+      description: "Adorable grey tabby kitten"
+    },
+    {
+      id: 4,
+      url: "https://images.unsplash.com/photo-1441057206919-63d19fac2369?w=400&h=300&fit=crop",
+      title: "Penguins",
+      description: "Two penguins on a rock"
     }
   ];
 

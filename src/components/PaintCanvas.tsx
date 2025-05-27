@@ -13,6 +13,7 @@ interface PaintCanvasProps {
 
 export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const backgroundCanvasRef = useRef<HTMLCanvasElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [currentColor, setCurrentColor] = useState("#ff6b6b");
@@ -22,55 +23,86 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    const backgroundCanvas = backgroundCanvasRef.current;
     const image = imageRef.current;
     
-    if (!canvas || !image) return;
+    if (!canvas || !backgroundCanvas || !image) return;
 
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const bgCtx = backgroundCanvas.getContext("2d");
+    if (!ctx || !bgCtx) return;
 
     image.onload = () => {
       // Set canvas size to match image
       canvas.width = 800;
       canvas.height = 600;
+      backgroundCanvas.width = 800;
+      backgroundCanvas.height = 600;
       
-      // Clear canvas and draw image
+      // Clear both canvases
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      bgCtx.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
+      
+      // Set background to white for painting
+      bgCtx.fillStyle = "#ffffff";
+      bgCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
+      
+      // Draw the contour image on top canvas with dark purple color
+      ctx.globalCompositeOperation = "source-over";
+      ctx.filter = "brightness(0) saturate(100%) invert(13%) sepia(74%) saturate(4746%) hue-rotate(260deg) brightness(86%) contrast(108%)";
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+      ctx.filter = "none";
     };
 
     image.src = imageUrl;
   }, [imageUrl]);
 
-  const getMousePos = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    const canvas = canvasRef.current;
+  const getEventPos = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    const canvas = backgroundCanvasRef.current;
     if (!canvas) return { x: 0, y: 0 };
     
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
     
+    let clientX, clientY;
+    
+    if ('touches' in e) {
+      if (e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        clientX = e.changedTouches[0].clientX;
+        clientY = e.changedTouches[0].clientY;
+      }
+    } else {
+      clientX = e.clientX;
+      clientY = e.clientY;
+    }
+    
     return {
-      x: (e.clientX - rect.left) * scaleX,
-      y: (e.clientY - rect.top) * scaleY
+      x: (clientX - rect.left) * scaleX,
+      y: (clientY - rect.top) * scaleY
     };
   };
 
-  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    const pos = getMousePos(e);
+  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
+    const pos = getEventPos(e);
     setIsDrawing(true);
     setLastX(pos.x);
     setLastY(pos.y);
   };
 
-  const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
     if (!isDrawing) return;
     
-    const canvas = canvasRef.current;
+    const canvas = backgroundCanvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (!ctx) return;
 
-    const pos = getMousePos(e);
+    const pos = getEventPos(e);
     
     ctx.globalCompositeOperation = "source-over";
     ctx.strokeStyle = currentColor;
@@ -87,27 +119,41 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
     setLastY(pos.y);
   };
 
-  const stopDrawing = () => {
+  const stopDrawing = (e?: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    e?.preventDefault();
     setIsDrawing(false);
   };
 
   const clearCanvas = () => {
-    const canvas = canvasRef.current;
-    const image = imageRef.current;
-    const ctx = canvas?.getContext("2d");
+    const backgroundCanvas = backgroundCanvasRef.current;
+    const bgCtx = backgroundCanvas?.getContext("2d");
     
-    if (!ctx || !canvas || !image) return;
+    if (!bgCtx || !backgroundCanvas) return;
     
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    bgCtx.fillStyle = "#ffffff";
+    bgCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
     toast.success("Canvas cleared! Start painting again! 🎨");
   };
 
   const exportImage = () => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const backgroundCanvas = backgroundCanvasRef.current;
+    if (!canvas || !backgroundCanvas) return;
     
-    const base64Data = canvas.toDataURL("image/png");
+    // Create a temporary canvas to combine both layers
+    const exportCanvas = document.createElement("canvas");
+    exportCanvas.width = canvas.width;
+    exportCanvas.height = canvas.height;
+    const exportCtx = exportCanvas.getContext("2d");
+    
+    if (!exportCtx) return;
+    
+    // Draw background layer first
+    exportCtx.drawImage(backgroundCanvas, 0, 0);
+    // Draw contour on top
+    exportCtx.drawImage(canvas, 0, 0);
+    
+    const base64Data = exportCanvas.toDataURL("image/png");
     
     // Create download link
     const link = document.createElement("a");
@@ -124,14 +170,24 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
       {/* Canvas Area */}
       <div className="lg:col-span-3">
         <Card className="paint-card p-6">
-          <div className="relative">
+          <div className="relative touch-none">
+            {/* Background canvas for painting */}
+            <canvas
+              ref={backgroundCanvasRef}
+              className="absolute top-0 left-0 max-w-full h-auto border-4 border-paint-purple-200 rounded-xl shadow-lg"
+            />
+            {/* Foreground canvas for contour */}
             <canvas
               ref={canvasRef}
-              className="max-w-full h-auto border-4 border-paint-purple-200 rounded-xl shadow-lg cursor-crosshair"
+              className="relative max-w-full h-auto border-4 border-paint-purple-200 rounded-xl shadow-lg cursor-crosshair"
               onMouseDown={startDrawing}
               onMouseMove={draw}
               onMouseUp={stopDrawing}
               onMouseLeave={stopDrawing}
+              onTouchStart={startDrawing}
+              onTouchMove={draw}
+              onTouchEnd={stopDrawing}
+              onTouchCancel={stopDrawing}
             />
             <img
               ref={imageRef}

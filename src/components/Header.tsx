@@ -1,5 +1,5 @@
 
-import { brush } from "lucide-react";
+import { Brush } from "lucide-react";
 
 export const Header = () => {
   return (
@@ -8,7 +8,7 @@ export const Header = () => {
         <div className="flex items-center justify-center space-x-4">
           <div className="animate-bounce-gentle">
             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-              <brush className="w-6 h-6 text-paint-purple-600" />
+              <Brush className="w-6 h-6 text-paint-purple-600" />
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-fredoka font-bold text-white drop-shadow-lg">
@@ -16,7 +16,7 @@ export const Header = () => {
           </h1>
           <div className="animate-bounce-gentle" style={{ animationDelay: '0.5s' }}>
             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-              <brush className="w-6 h-6 text-paint-cyan-600" />
+              <Brush className="w-6 h-6 text-paint-cyan-600" />
             </div>
           </div>
         </div>
