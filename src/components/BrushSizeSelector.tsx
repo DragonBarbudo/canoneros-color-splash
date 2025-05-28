@@ -9,23 +9,23 @@ export const BrushSizeSelector = ({ brushSize, onBrushSizeChange }: BrushSizeSel
 
   return (
     <div>
-      <label className="block font-fredoka font-medium text-brand-dark mb-3">
-        Tamaño del Pincel 🖌️
+      <label className="block font-fredoka font-medium text-brand-white mb-3">
+        Tamaño del Pincel
       </label>
       
       <div className="grid grid-cols-3 gap-2 mb-4">
         {sizes.map((size) => (
           <button
             key={size}
-            className={`h-16 rounded-xl border-3 transition-all duration-200 hover:scale-105 flex items-center justify-center ${
+            className={`h-16 border-3 transition-all duration-200 hover:scale-105 flex items-center justify-center ${
               brushSize === size
-                ? "border-brand-purple bg-brand-cyan scale-105"
-                : "border-brand-cyan bg-brand-white hover:border-brand-purple"
+                ? "border-brand-cyan bg-brand-purple scale-105"
+                : "border-brand-white bg-brand-dark hover:border-brand-cyan"
             }`}
             onClick={() => onBrushSizeChange(size)}
           >
             <div
-              className="rounded-full bg-brand-purple"
+              className="bg-brand-white"
               style={{
                 width: `${Math.min(size, 24)}px`,
                 height: `${Math.min(size, 24)}px`,
@@ -36,7 +36,7 @@ export const BrushSizeSelector = ({ brushSize, onBrushSizeChange }: BrushSizeSel
       </div>
       
       <div className="mt-4">
-        <label className="block font-fredoka font-medium text-brand-dark mb-2">
+        <label className="block font-fredoka font-medium text-brand-white mb-2">
           Tamaño Personalizado: {brushSize}px
         </label>
         <input
@@ -45,7 +45,7 @@ export const BrushSizeSelector = ({ brushSize, onBrushSizeChange }: BrushSizeSel
           max="50"
           value={brushSize}
           onChange={(e) => onBrushSizeChange(Number(e.target.value))}
-          className="w-full h-2 bg-brand-cyan rounded-lg appearance-none cursor-pointer slider"
+          className="w-full h-2 bg-brand-cyan appearance-none cursor-pointer slider"
         />
       </div>
     </div>

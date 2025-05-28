@@ -130,7 +130,7 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
     
     bgCtx.fillStyle = "#ffffff";
     bgCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
-    toast.success("¡Lienzo limpio! ¡Empieza a pintar de nuevo! 🎨");
+    toast.success("Lienzo limpio! Empieza a pintar de nuevo!");
   };
 
   const exportImage = () => {
@@ -164,7 +164,7 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
       // Clean up the URL object
       URL.revokeObjectURL(url);
       
-      toast.success("¡Tu obra maestra ha sido descargada! 🌟");
+      toast.success("Tu obra maestra ha sido descargada!");
     }, "image/png");
   };
 
@@ -177,12 +177,12 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
             {/* Background canvas for painting */}
             <canvas
               ref={backgroundCanvasRef}
-              className="absolute top-0 left-0 max-w-full max-h-[600px] border-4 border-brand-cyan rounded-xl shadow-lg aspect-square"
+              className="absolute top-0 left-0 max-w-full max-h-[600px] border-4 border-brand-cyan shadow-lg aspect-square"
             />
             {/* Foreground canvas for contour */}
             <canvas
               ref={canvasRef}
-              className="relative max-w-full max-h-[600px] border-4 border-brand-cyan rounded-xl shadow-lg cursor-crosshair aspect-square"
+              className="relative max-w-full max-h-[600px] border-4 border-brand-cyan shadow-lg cursor-crosshair aspect-square"
               onMouseDown={startDrawing}
               onMouseMove={draw}
               onMouseUp={stopDrawing}
@@ -204,8 +204,8 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
       {/* Controls Panel */}
       <div className="space-y-6">
         <Card className="paint-card p-6">
-          <h3 className="font-fredoka font-semibold text-brand-dark text-xl mb-4 text-center">
-            Herramientas de Pintura 🎨
+          <h3 className="font-fredoka font-semibold text-brand-white text-xl mb-4 text-center">
+            Herramientas de Pintura
           </h3>
           
           <div className="space-y-6">
@@ -222,15 +222,15 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
         </Card>
 
         <Card className="paint-card p-6">
-          <h3 className="font-fredoka font-semibold text-brand-dark text-xl mb-4 text-center">
-            Acciones ✨
+          <h3 className="font-fredoka font-semibold text-brand-white text-xl mb-4 text-center">
+            Acciones
           </h3>
           
           <div className="space-y-3">
             <Button
               onClick={clearCanvas}
               variant="outline"
-              className="w-full border-2 border-brand-cyan bg-brand-white text-brand-dark hover:bg-brand-cyan"
+              className="w-full border-2 border-brand-cyan bg-brand-dark text-brand-white hover:bg-brand-cyan hover:text-brand-dark"
             >
               <RotateCcw className="w-4 h-4 mr-2" />
               Limpiar Lienzo
