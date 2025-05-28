@@ -5,7 +5,7 @@ interface BrushSizeSelectorProps {
 }
 
 export const BrushSizeSelector = ({ brushSize, onBrushSizeChange }: BrushSizeSelectorProps) => {
-  const sizes = [5, 10, 15, 20, 30, 40];
+  const sizes = [10, 20, 30];
 
   return (
     <div>
@@ -20,12 +20,12 @@ export const BrushSizeSelector = ({ brushSize, onBrushSizeChange }: BrushSizeSel
             className={`h-16 border-3 transition-all duration-200 hover:scale-105 flex items-center justify-center ${
               brushSize === size
                 ? "border-brand-cyan bg-brand-purple scale-105"
-                : "border-brand-white bg-brand-dark hover:border-brand-cyan"
+                : "border-brand-cyan bg-brand-dark hover:border-brand-white"
             }`}
             onClick={() => onBrushSizeChange(size)}
           >
             <div
-              className="bg-brand-white"
+              className="bg-brand-white rounded-full"
               style={{
                 width: `${Math.min(size, 24)}px`,
                 height: `${Math.min(size, 24)}px`,

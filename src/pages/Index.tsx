@@ -40,7 +40,7 @@ const Index = () => {
               <Button
                 onClick={handleBackToGallery}
                 variant="outline"
-                className="border-2 border-brand-white bg-brand-dark text-brand-white hover:bg-brand-purple"
+                className="border-2 border-brand-cyan bg-brand-dark text-brand-cyan hover:bg-brand-cyan hover:text-brand-dark"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Volver a la Galería

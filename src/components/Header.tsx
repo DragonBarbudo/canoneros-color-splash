@@ -1,7 +1,7 @@
 
 export const Header = () => {
   return (
-    <header className="bg-brand-dark border-b-2 border-brand-white">
+    <header className="bg-white border-b-2 border-brand-dark">
       <div className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-center">
           <img

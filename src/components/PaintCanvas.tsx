@@ -172,7 +172,7 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
       {/* Canvas Area */}
       <div className="lg:col-span-3">
-        <Card className="paint-card p-6">
+        <div className="bg-brand-dark border-4 border-brand-cyan shadow-lg p-6">
           <div className="relative touch-none flex justify-center">
             {/* Background canvas for painting */}
             <canvas
@@ -198,12 +198,12 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
               alt="Fondo"
             />
           </div>
-        </Card>
+        </div>
       </div>
 
       {/* Controls Panel */}
       <div className="space-y-6">
-        <Card className="paint-card p-6">
+        <div className="bg-brand-dark border-4 border-brand-cyan shadow-lg p-6">
           <h3 className="font-fredoka font-semibold text-brand-white text-xl mb-4 text-center">
             Herramientas de Pintura
           </h3>
@@ -219,9 +219,9 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
               onBrushSizeChange={setBrushSize}
             />
           </div>
-        </Card>
+        </div>
 
-        <Card className="paint-card p-6">
+        <div className="bg-brand-dark border-4 border-brand-cyan shadow-lg p-6">
           <h3 className="font-fredoka font-semibold text-brand-white text-xl mb-4 text-center">
             Acciones
           </h3>
@@ -230,7 +230,7 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
             <Button
               onClick={clearCanvas}
               variant="outline"
-              className="w-full border-2 border-brand-cyan bg-brand-dark text-brand-white hover:bg-brand-cyan hover:text-brand-dark"
+              className="w-full border-2 border-brand-cyan bg-brand-dark text-brand-cyan hover:bg-brand-cyan hover:text-brand-dark"
             >
               <RotateCcw className="w-4 h-4 mr-2" />
               Limpiar Lienzo
@@ -238,13 +238,13 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
             
             <Button
               onClick={exportImage}
-              className="w-full paint-button"
+              className="w-full bg-brand-purple text-brand-white font-fredoka font-semibold px-6 py-3 shadow-lg transition-all duration-200 hover:bg-brand-cyan hover:text-brand-dark"
             >
               <Download className="w-4 h-4 mr-2" />
               Guardar Obra Maestra
             </Button>
           </div>
-        </Card>
+        </div>
       </div>
     </div>
   );
