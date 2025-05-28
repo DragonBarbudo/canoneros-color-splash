@@ -46,32 +46,8 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
       bgCtx.fillStyle = "#ffffff";
       bgCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
       
-      // Draw the contour image normally first
+      // Draw the original image without any color modification
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-      
-      // Get image data to modify colors while preserving transparency
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const data = imageData.data;
-      
-      // Convert black/dark pixels to dark purple while preserving transparency
-      for (let i = 0; i < data.length; i += 4) {
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
-        const a = data[i + 3];
-        
-        // Only modify visible pixels (alpha > 0)
-        if (a > 0) {
-          // Convert to dark purple (#6d28d9)
-          data[i] = 109;     // R
-          data[i + 1] = 40;  // G
-          data[i + 2] = 217; // B
-          // Keep original alpha
-        }
-      }
-      
-      // Put the modified image data back
-      ctx.putImageData(imageData, 0, 0);
     };
 
     image.src = imageUrl;
