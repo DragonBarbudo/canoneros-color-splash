@@ -20,7 +20,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'fredoka': ['Fredoka', 'sans-serif'],
+				'poppins': ['Poppins', 'sans-serif'],
 				'comic': ['Comic Neue', 'cursive'],
 			},
 			colors: {

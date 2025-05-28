@@ -34,7 +34,7 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
 
     image.onload = () => {
       // Set square canvas size
-      const size = 600;
+      const size = 2048;
       canvas.width = size;
       canvas.height = size;
       backgroundCanvas.width = size;
@@ -169,20 +169,20 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 ">
       {/* Canvas Area */}
       <div className="lg:col-span-3">
-        <div className="bg-brand-dark border-4 border-brand-cyan shadow-lg p-6">
-          <div className="relative touch-none flex justify-center">
+        <div className="bg-white/25   shadow-lg p-6">
+          <div className="relative touch-none flex justify-center items-center  aspect-square max-w-3xl mx-auto">
             {/* Background canvas for painting */}
             <canvas
               ref={backgroundCanvasRef}
-              className="absolute top-0 left-0 max-w-full max-h-[600px] border-4 border-brand-cyan shadow-lg aspect-square"
+              className="absolute  w-full  border-4 shadow-lg aspect-square"
             />
             {/* Foreground canvas for contour */}
             <canvas
               ref={canvasRef}
-              className="relative max-w-full max-h-[600px] border-4 border-brand-cyan shadow-lg cursor-crosshair aspect-square"
+              className="relative w-full border-4  shadow-lg cursor-crosshair aspect-square"
               onMouseDown={startDrawing}
               onMouseMove={draw}
               onMouseUp={stopDrawing}
@@ -203,8 +203,8 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
 
       {/* Controls Panel */}
       <div className="space-y-6">
-        <div className="bg-brand-dark border-4 border-brand-cyan shadow-lg p-6">
-          <h3 className="font-fredoka font-semibold text-brand-white text-xl mb-4 text-center">
+        <div className="bg-white/25  shadow-lg p-6">
+          <h3 className="font-poppins font-semibold text-brand-white text-xl mb-4 text-center">
             Herramientas de Pintura
           </h3>
           
@@ -221,8 +221,8 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
           </div>
         </div>
 
-        <div className="bg-brand-dark border-4 border-brand-cyan shadow-lg p-6">
-          <h3 className="font-fredoka font-semibold text-brand-white text-xl mb-4 text-center">
+        <div className="bg-white/25  shadow-lg p-6">
+          <h3 className="font-poppins font-semibold text-brand-white text-xl mb-4 text-center">
             Acciones
           </h3>
           
@@ -238,7 +238,7 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
             
             <Button
               onClick={exportImage}
-              className="w-full bg-brand-purple text-brand-white font-fredoka font-semibold px-6 py-3 shadow-lg transition-all duration-200 hover:bg-brand-cyan hover:text-brand-dark"
+              className="w-full bg-brand-purple text-brand-white font-poppins font-semibold px-6 py-3 shadow-lg transition-all duration-200 hover:bg-brand-cyan hover:text-brand-dark"
             >
               <Download className="w-4 h-4 mr-2" />
               Guardar Obra Maestra

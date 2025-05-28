@@ -18,18 +18,18 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-brand-dark">
+    <div className="min-h-screen" id="themain">
       <Header />
       
       <main className="container mx-auto px-4 py-8">
         {!selectedImage ? (
           <div className="animate-fade-in">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-fredoka font-bold text-brand-white mb-4">
-                Elige tu Aventura
+              <h2 className="text-4xl md:text-5xl font-poppins font-bold text-brand-white mb-4">
+                Personaliza tu pasión
               </h2>
               <p className="text-xl text-brand-cyan font-comic">
-                Selecciona una imagen para empezar a pintar
+                ¡Selecciona una imagen y píntala a tu gusto!
               </p>
             </div>
             <ImageGallery onImageSelect={handleImageSelect} />
@@ -43,7 +43,7 @@ const Index = () => {
                 className="border-2 border-brand-cyan bg-brand-dark text-brand-cyan hover:bg-brand-cyan hover:text-brand-dark"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Volver a la Galería
+                Regresar
               </Button>
             </div>
             <PaintCanvas imageUrl={selectedImage} />

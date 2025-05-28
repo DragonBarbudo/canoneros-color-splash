@@ -10,12 +10,7 @@ export const ImageGallery = ({ onImageSelect }: ImageGalleryProps) => {
     {
       id: 1,
       url: "/lovable-uploads/08117404-475d-4733-9ba5-84f68d693769.png",
-      title: "Aventura 1"
-    },
-    {
-      id: 2,
-      url: "/lovable-uploads/3953c8d0-b798-4048-b29c-c44bed5b614d.png",
-      title: "Aventura 2"
+      title: "Ahoy"
     },
     {
       id: 3,
@@ -35,24 +30,22 @@ export const ImageGallery = ({ onImageSelect }: ImageGalleryProps) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
       {images.map((image) => (
         <Card
           key={image.id}
-          className="bg-brand-dark border-4 border-brand-cyan shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-105 hover:border-brand-purple"
+          className="bg-white/25 border-none shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-105 hover:border-brand-purple"
           onClick={() => onImageSelect(image.url)}
         >
           <div className="p-4">
-            <div className="aspect-square bg-brand-purple border-2 border-brand-cyan mb-4 overflow-hidden">
+            <div className="aspect-square bg-white  overflow-hidden">
               <img
                 src={image.url}
                 alt={image.title}
                 className="w-full h-full object-cover"
               />
             </div>
-            <h3 className="font-fredoka font-bold text-xl text-brand-white text-center">
-              {image.title}
-            </h3>
+            
           </div>
         </Card>
       ))}

@@ -98,6 +98,27 @@
 
 @layer components {
   .paint-button {
-    @apply bg-brand-purple text-brand-white font-fredoka font-semibold px-6 py-3 shadow-lg transition-all duration-200;
+    @apply bg-brand-purple text-brand-white font-poppins font-semibold px-6 py-3 shadow-lg transition-all duration-200;
+  }
+}
+
+
+
+
+#themain{
+  background: linear-gradient(135deg, #1B004B, #4A00B1, #8300D0, #D136FA);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
