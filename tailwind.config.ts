@@ -67,30 +67,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom theme colors for the coloring app
-				'paint-purple': {
-					50: '#f3e8ff',
-					100: '#e9d5ff',
-					200: '#d8b4fe',
-					300: '#c084fc',
-					400: '#a855f7',
-					500: '#9333ea',
-					600: '#7c3aed',
-					700: '#6d28d9',
-					800: '#5b21b6',
-					900: '#4c1d95',
-				},
-				'paint-cyan': {
-					50: '#ecfeff',
-					100: '#cffafe',
-					200: '#a5f3fc',
-					300: '#67e8f9',
-					400: '#22d3ee',
-					500: '#06b6d4',
-					600: '#0891b2',
-					700: '#0e7490',
-					800: '#155e75',
-					900: '#164e63',
+				// Brand colors from the palette
+				'brand': {
+					purple: '#553178',
+					white: '#FFFFFF',
+					dark: '#101820',
+					cyan: '#A4DAE7',
 				}
 			},
 			borderRadius: {
@@ -122,21 +104,12 @@ export default {
 					'50%': {
 						transform: 'translateY(-10px)',
 					}
-				},
-				'pulse-color': {
-					'0%, 100%': {
-						background: 'linear-gradient(135deg, #9333ea, #06b6d4)',
-					},
-					'50%': {
-						background: 'linear-gradient(135deg, #06b6d4, #9333ea)',
-					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'bounce-gentle': 'bounce-gentle 2s ease-in-out infinite',
-				'pulse-color': 'pulse-color 3s ease-in-out infinite',
 			}
 		}
 	},

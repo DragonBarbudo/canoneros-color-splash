@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -15,7 +16,7 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
   const backgroundCanvasRef = useRef<HTMLCanvasElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [currentColor, setCurrentColor] = useState("#ff6b6b");
+  const [currentColor, setCurrentColor] = useState("#553178");
   const [brushSize, setBrushSize] = useState(20);
   const [lastX, setLastX] = useState(0);
   const [lastY, setLastY] = useState(0);
@@ -32,11 +33,12 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
     if (!ctx || !bgCtx) return;
 
     image.onload = () => {
-      // Set canvas size to match image
-      canvas.width = 800;
-      canvas.height = 600;
-      backgroundCanvas.width = 800;
-      backgroundCanvas.height = 600;
+      // Set square canvas size
+      const size = 600;
+      canvas.width = size;
+      canvas.height = size;
+      backgroundCanvas.width = size;
+      backgroundCanvas.height = size;
       
       // Clear both canvases
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -46,7 +48,7 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
       bgCtx.fillStyle = "#ffffff";
       bgCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
       
-      // Draw the original image without any color modification
+      // Draw the original image in square format
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     };
 
@@ -128,7 +130,7 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
     
     bgCtx.fillStyle = "#ffffff";
     bgCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
-    toast.success("Canvas cleared! Start painting again! 🎨");
+    toast.success("¡Lienzo limpio! ¡Empieza a pintar de nuevo! 🎨");
   };
 
   const exportImage = () => {
@@ -155,14 +157,14 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
       
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
-      link.download = "my-masterpiece.png";
+      link.download = "mi-obra-maestra.png";
       link.href = url;
       link.click();
       
       // Clean up the URL object
       URL.revokeObjectURL(url);
       
-      toast.success("Your masterpiece has been downloaded! 🌟");
+      toast.success("¡Tu obra maestra ha sido descargada! 🌟");
     }, "image/png");
   };
 
@@ -171,16 +173,16 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
       {/* Canvas Area */}
       <div className="lg:col-span-3">
         <Card className="paint-card p-6">
-          <div className="relative touch-none">
+          <div className="relative touch-none flex justify-center">
             {/* Background canvas for painting */}
             <canvas
               ref={backgroundCanvasRef}
-              className="absolute top-0 left-0 max-w-full h-auto border-4 border-paint-purple-200 rounded-xl shadow-lg"
+              className="absolute top-0 left-0 max-w-full max-h-[600px] border-4 border-brand-cyan rounded-xl shadow-lg aspect-square"
             />
             {/* Foreground canvas for contour */}
             <canvas
               ref={canvasRef}
-              className="relative max-w-full h-auto border-4 border-paint-purple-200 rounded-xl shadow-lg cursor-crosshair"
+              className="relative max-w-full max-h-[600px] border-4 border-brand-cyan rounded-xl shadow-lg cursor-crosshair aspect-square"
               onMouseDown={startDrawing}
               onMouseMove={draw}
               onMouseUp={stopDrawing}
@@ -193,7 +195,7 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
             <img
               ref={imageRef}
               className="hidden"
-              alt="Background"
+              alt="Fondo"
             />
           </div>
         </Card>
@@ -202,8 +204,8 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
       {/* Controls Panel */}
       <div className="space-y-6">
         <Card className="paint-card p-6">
-          <h3 className="font-fredoka font-semibold text-paint-purple-700 text-xl mb-4 text-center">
-            Paint Tools 🎨
+          <h3 className="font-fredoka font-semibold text-brand-dark text-xl mb-4 text-center">
+            Herramientas de Pintura 🎨
           </h3>
           
           <div className="space-y-6">
@@ -220,18 +222,18 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
         </Card>
 
         <Card className="paint-card p-6">
-          <h3 className="font-fredoka font-semibold text-paint-purple-700 text-xl mb-4 text-center">
-            Actions ✨
+          <h3 className="font-fredoka font-semibold text-brand-dark text-xl mb-4 text-center">
+            Acciones ✨
           </h3>
           
           <div className="space-y-3">
             <Button
               onClick={clearCanvas}
               variant="outline"
-              className="w-full paint-button border-2 border-paint-cyan-300 bg-white/80 text-paint-cyan-700 hover:bg-paint-cyan-50"
+              className="w-full border-2 border-brand-cyan bg-brand-white text-brand-dark hover:bg-brand-cyan"
             >
               <RotateCcw className="w-4 h-4 mr-2" />
-              Clear Canvas
+              Limpiar Lienzo
             </Button>
             
             <Button
@@ -239,7 +241,7 @@ export const PaintCanvas = ({ imageUrl }: PaintCanvasProps) => {
               className="w-full paint-button"
             >
               <Download className="w-4 h-4 mr-2" />
-              Save Masterpiece
+              Guardar Obra Maestra
             </Button>
           </div>
         </Card>

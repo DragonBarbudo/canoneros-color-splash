@@ -9,8 +9,8 @@ export const BrushSizeSelector = ({ brushSize, onBrushSizeChange }: BrushSizeSel
 
   return (
     <div>
-      <label className="block font-fredoka font-medium text-paint-purple-700 mb-3">
-        Brush Size 🖌️
+      <label className="block font-fredoka font-medium text-brand-dark mb-3">
+        Tamaño del Pincel 🖌️
       </label>
       
       <div className="grid grid-cols-3 gap-2 mb-4">
@@ -19,13 +19,13 @@ export const BrushSizeSelector = ({ brushSize, onBrushSizeChange }: BrushSizeSel
             key={size}
             className={`h-16 rounded-xl border-3 transition-all duration-200 hover:scale-105 flex items-center justify-center ${
               brushSize === size
-                ? "border-paint-purple-500 bg-paint-purple-100 scale-105"
-                : "border-paint-purple-200 bg-white hover:border-paint-purple-300"
+                ? "border-brand-purple bg-brand-cyan scale-105"
+                : "border-brand-cyan bg-brand-white hover:border-brand-purple"
             }`}
             onClick={() => onBrushSizeChange(size)}
           >
             <div
-              className="rounded-full bg-paint-purple-500"
+              className="rounded-full bg-brand-purple"
               style={{
                 width: `${Math.min(size, 24)}px`,
                 height: `${Math.min(size, 24)}px`,
@@ -36,8 +36,8 @@ export const BrushSizeSelector = ({ brushSize, onBrushSizeChange }: BrushSizeSel
       </div>
       
       <div className="mt-4">
-        <label className="block font-fredoka font-medium text-paint-purple-700 mb-2">
-          Custom Size: {brushSize}px
+        <label className="block font-fredoka font-medium text-brand-dark mb-2">
+          Tamaño Personalizado: {brushSize}px
         </label>
         <input
           type="range"
@@ -45,7 +45,7 @@ export const BrushSizeSelector = ({ brushSize, onBrushSizeChange }: BrushSizeSel
           max="50"
           value={brushSize}
           onChange={(e) => onBrushSizeChange(Number(e.target.value))}
-          className="w-full h-2 bg-paint-purple-200 rounded-lg appearance-none cursor-pointer slider"
+          className="w-full h-2 bg-brand-cyan rounded-lg appearance-none cursor-pointer slider"
         />
       </div>
     </div>

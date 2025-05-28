@@ -14,10 +14,10 @@
     --popover: 255 255 255;
     --popover-foreground: 15 23 42;
 
-    --primary: 147 51 234;
+    --primary: 85 49 120;
     --primary-foreground: 248 250 252;
 
-    --secondary: 6 182 212;
+    --secondary: 164 218 231;
     --secondary-foreground: 15 23 42;
 
     --muted: 241 245 249;
@@ -31,22 +31,22 @@
 
     --border: 226 232 240;
     --input: 226 232 240;
-    --ring: 147 51 234;
+    --ring: 85 49 120;
 
     --radius: 1rem;
 
     --sidebar-background: 255 255 255;
     --sidebar-foreground: 15 23 42;
-    --sidebar-primary: 147 51 234;
+    --sidebar-primary: 85 49 120;
     --sidebar-primary-foreground: 248 250 252;
     --sidebar-accent: 241 245 249;
     --sidebar-accent-foreground: 15 23 42;
     --sidebar-border: 226 232 240;
-    --sidebar-ring: 147 51 234;
+    --sidebar-ring: 85 49 120;
   }
 
   .dark {
-    --background: 15 23 42;
+    --background: 16 24 32;
     --foreground: 248 250 252;
 
     --card: 30 41 59;
@@ -55,10 +55,10 @@
     --popover: 30 41 59;
     --popover-foreground: 248 250 252;
 
-    --primary: 168 85 247;
+    --primary: 85 49 120;
     --primary-foreground: 15 23 42;
 
-    --secondary: 34 211 238;
+    --secondary: 164 218 231;
     --secondary-foreground: 15 23 42;
 
     --muted: 51 65 85;
@@ -72,16 +72,16 @@
 
     --border: 51 65 85;
     --input: 51 65 85;
-    --ring: 168 85 247;
+    --ring: 85 49 120;
 
-    --sidebar-background: 15 23 42;
+    --sidebar-background: 16 24 32;
     --sidebar-foreground: 248 250 252;
-    --sidebar-primary: 168 85 247;
+    --sidebar-primary: 85 49 120;
     --sidebar-primary-foreground: 15 23 42;
     --sidebar-accent: 51 65 85;
     --sidebar-accent-foreground: 248 250 252;
     --sidebar-border: 51 65 85;
-    --sidebar-ring: 168 85 247;
+    --sidebar-ring: 85 49 120;
   }
 }
 
@@ -91,21 +91,17 @@
   }
 
   body {
-    @apply bg-gradient-to-br from-paint-purple-50 via-white to-paint-cyan-50 text-foreground font-comic;
+    @apply bg-brand-white text-foreground font-comic;
     min-height: 100vh;
   }
 }
 
 @layer components {
-  .paint-gradient {
-    @apply bg-gradient-to-r from-paint-purple-500 to-paint-cyan-500;
-  }
-  
   .paint-card {
-    @apply bg-white/80 backdrop-blur-sm border-2 border-paint-purple-200 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300;
+    @apply bg-brand-white border-2 border-brand-cyan rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300;
   }
   
   .paint-button {
-    @apply bg-gradient-to-r from-paint-purple-500 to-paint-cyan-500 text-white font-fredoka font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200;
+    @apply bg-brand-purple text-brand-white font-fredoka font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200;
   }
 }
