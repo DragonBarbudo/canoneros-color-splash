@@ -9,23 +9,19 @@ export const ImageGallery = ({ onImageSelect }: ImageGalleryProps) => {
   const images = [
     {
       id: 1,
-      url: "/lovable-uploads/08117404-475d-4733-9ba5-84f68d693769.png",
-      title: "Ahoy"
+      url: "/paint/08117404-475d-4733-9ba5-84f68d693769.png",
+    },
+    {
+      id: 2,
+      url: "/paint/7c57ba4b-bf47-4eea-a340-28ed9ffbef90.png",
     },
     {
       id: 3,
-      url: "/lovable-uploads/7c57ba4b-bf47-4eea-a340-28ed9ffbef90.png",
-      title: "Aventura 3"
+      url: "/paint/8eacdfbc-da62-434b-a4f9-a00e3705a52e.png",
     },
     {
       id: 4,
-      url: "/lovable-uploads/8eacdfbc-da62-434b-a4f9-a00e3705a52e.png",
-      title: "Aventura 4"
-    },
-    {
-      id: 5,
-      url: "/lovable-uploads/be6cddec-b5e4-43cd-ac18-5f4d7af49755.png",
-      title: "Aventura 5"
+      url: "/paint/be6cddec-b5e4-43cd-ac18-5f4d7af49755.png",
     }
   ];
 
