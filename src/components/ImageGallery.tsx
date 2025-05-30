@@ -1,5 +1,9 @@
 
 import { Card } from "@/components/ui/card";
+import image1 from "@/assets/paint/08117404-475d-4733-9ba5-84f68d693769.png";
+import image2 from "@/assets/paint/7c57ba4b-bf47-4eea-a340-28ed9ffbef90.png";
+import image3 from "@/assets/paint/8eacdfbc-da62-434b-a4f9-a00e3705a52e.png";
+import image4 from "@/assets/paint/be6cddec-b5e4-43cd-ac18-5f4d7af49755.png";
 
 interface ImageGalleryProps {
   onImageSelect: (imageUrl: string) => void;
@@ -9,19 +13,19 @@ export const ImageGallery = ({ onImageSelect }: ImageGalleryProps) => {
   const images = [
     {
       id: 1,
-      url: "/paint/08117404-475d-4733-9ba5-84f68d693769.png",
+      url: image1,
     },
     {
       id: 2,
-      url: "/paint/7c57ba4b-bf47-4eea-a340-28ed9ffbef90.png",
+      url: image2,
     },
     {
       id: 3,
-      url: "/paint/8eacdfbc-da62-434b-a4f9-a00e3705a52e.png",
+      url: image3,
     },
     {
       id: 4,
-      url: "/paint/be6cddec-b5e4-43cd-ac18-5f4d7af49755.png",
+      url: image4,
     }
   ];
 
