@@ -1,4 +1,5 @@
 
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,8 +10,8 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Get the base path for routing based on environment - must match vite config
-const basename = import.meta.env.PROD ? "/FanCanoneros/Paint" : "";
+// Use the same base path for both dev and production to match vite config
+const basename = "/FanCanoneros/Paint";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -29,3 +30,4 @@ const App = () => (
 );
 
 export default App;
+
