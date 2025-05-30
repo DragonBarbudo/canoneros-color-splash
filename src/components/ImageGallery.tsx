@@ -34,14 +34,13 @@ export const ImageGallery = ({ onImageSelect }: ImageGalleryProps) => {
           onClick={() => onImageSelect(image.url)}
         >
           <div className="p-4">
-            <div className="aspect-square bg-white  overflow-hidden">
+            <div className="aspect-square bg-white overflow-hidden">
               <img
                 src={image.url}
-                alt={image.title}
+                alt={`Imagen para colorear ${image.id}`}
                 className="w-full h-full object-cover"
               />
             </div>
-            
           </div>
         </Card>
       ))}
