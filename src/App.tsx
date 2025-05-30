@@ -9,7 +9,7 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Get the base path for routing based on environment
+// Get the base path for routing based on environment - must match vite config
 const basename = import.meta.env.PROD ? "/FanCanoneros/Paint" : "";
 
 const App = () => (
